@@ -6,33 +6,112 @@
   height: 40vmin;
   pointer-events: none;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+*{
+  margin:0;
+  padding:0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
+  background-color: coral;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  width: 100vw;
+  height: 100vh;
+}
+.button{
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 599;
+  text-transform: uppercase;
+  display: inline-block;
+  border-radius: 1.5rem;
+  background-color: white;
+  color:black;
+  padding: 1rem 2rem;
+  outline: none;
+}
+.popup{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width:100vw;
+  height:100vh;
+  bottom:-100;
+  right:-100;
+  background-color: rgba(0,0,0,0.80);
+  z-index: 2;
+  visibility: hidden ;
+  opacity: 0;
+  overflow: hidden;
+  transition: 0.74s ease-in-out;
+  border:2px solid red
+}
+.popup-inner{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  bottom: -100vw;
+  right: -100vh;
+  display: flex;
+  align-items: center;
+  max-width: 800px;
+  max-height: 599px;
+  width:59%;
+  height: 80%;
+  background-color: white;
+  transform: rotate(32deg);
+  transition: 0.74s ease-in-out ;
 }
 
-.App-link {
-  color: #61dafb;
+.popup-close{
+  position: relative;
+  right: -1rem;
+  top: -1rem;
+  width: 3rem;
+  height: 3rem;
+  font-size: 0.8rem;
+  font-weight: 400;
+  border-radius: 100%;
+  background-color: #0a0a0a;
+  z-index: 4;
+  color:white;
+  line-height: 3rem;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+.popup-show{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width:100vw;
+  height:100vh;
+  bottom:0;
+  right:0;
+  background-color: rgba(0,0,0,0.80);
+  z-index: 2;
+  visibility: visible;
+  opacity: 1;
+  overflow: hidden;
+  transition: 0.74s ease-in-out;
+}
+.popup-show .popup-inner{
+  bottom: 0;
+  right: 0;
+  transform: rotate(0);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Body_main{
+  display: flex;
+  min-height: 20vh;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-around;
+  border:1px solid red;
 }
+
+
