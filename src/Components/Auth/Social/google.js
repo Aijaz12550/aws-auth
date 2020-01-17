@@ -33,6 +33,7 @@ Amplify.configure(awsConfig)
     }
 
     async getAWSCredentials(googleUser) {
+    
         const { id_token, expires_at } = googleUser.getAuthResponse();
         const profile = googleUser.getBasicProfile();
         let user = {
@@ -40,12 +41,16 @@ Amplify.configure(awsConfig)
             name: profile.getName()
         };
         console.log('>>>',googleUser)
-        // const credentials = await Auth.federatedSignIn(
-        //     'google',
-        //     { token: id_token, expires_at },
-        //     user
-        // );
-        // console.log('credentials', credentials);
+         await Auth.federatedSignIn(
+            'google',
+            { token: id_token, expires_at },
+            user
+        ).then( res=>{
+             console.log('success',res)
+        }).catch( error => {
+            console.log(' error', error)
+        })
+       
     }
 
     createScript() {
@@ -62,7 +67,7 @@ Amplify.configure(awsConfig)
         const g = window.gapi;
         g.load('auth2', function() {
             g.auth2.init({
-                client_id: '707252312933-60s9quv7ans42rhlpb2cr2k75ucngjf3.apps.googleusercontent.com',
+                client_id: '215485620819-r3ps1inqudcu9u0dvpeu6lrrfktd7dma.apps.googleusercontent.com',
                 // authorized scopes
                 scope: 'profile email openid'
             });

@@ -1,10 +1,24 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import { SignUp } from './Components/Auth/EmailPassword/SignUp'
 import { Social } from './Components/Auth/Social/Facebook'
+import { Auth } from 'aws-amplify'
 
 function App() {
   const [style, setStyle] = useState('popup')
+
+   useEffect (()=>{
+
+    async function sabar(){
+
+      await Auth.currentSession()
+      .then( data => console.log('data',data))
+      .catch( error => console.log( 'error', error))
+    }
+
+    sabar()
+
+    })
   return (
     <div className="App">
 
