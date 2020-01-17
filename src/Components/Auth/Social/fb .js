@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { Auth } from 'aws-amplify';
+import Amplify, { Auth } from 'aws-amplify';
+import { awsConfig } from '../../../Config/credential'
+
+Amplify.configure(awsConfig)
+
 // To federated sign in from Facebook
 export class SignInWithFacebook extends Component {
     constructor(props) {
@@ -16,6 +20,7 @@ export class SignInWithFacebook extends Component {
         fb.getLoginStatus(response => {
             if (response.status === 'connected') {
                 this.getAWSCredentials(response.authResponse);
+                console.log('>>>',response)
             } else {
                 fb.login(
                     response => {
@@ -23,6 +28,7 @@ export class SignInWithFacebook extends Component {
                             return;
                         }
                         this.getAWSCredentials(response.authResponse);
+                        console.log('>>>',response)
                     },
                     {
                         // the authorized scopes

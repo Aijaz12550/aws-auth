@@ -1,6 +1,11 @@
 
 import React, { Component } from 'react';
-import { Auth } from 'aws-amplify';
+import Amplify, { Auth } from 'aws-amplify';
+import { awsConfig } from '../../../Config/credential'
+
+Amplify.configure(awsConfig)
+
+
 // To federated sign in from Google
  export class GoogleLogin extends Component {
     constructor(props) {
@@ -19,7 +24,7 @@ import { Auth } from 'aws-amplify';
         const ga = window.gapi.auth2.getAuthInstance();
         ga.signIn().then(
             googleUser => {
-                // this.getAWSCredentials(googleUser);
+                this.getAWSCredentials(googleUser);
             },
             error => {
                 console.log(error);
@@ -34,13 +39,13 @@ import { Auth } from 'aws-amplify';
             email: profile.getEmail(),
             name: profile.getName()
         };
-        
-        const credentials = await Auth.federatedSignIn(
-            'google',
-            { token: id_token, expires_at },
-            user
-        );
-        console.log('credentials', credentials);
+        console.log('>>>',googleUser)
+        // const credentials = await Auth.federatedSignIn(
+        //     'google',
+        //     { token: id_token, expires_at },
+        //     user
+        // );
+        // console.log('credentials', credentials);
     }
 
     createScript() {
